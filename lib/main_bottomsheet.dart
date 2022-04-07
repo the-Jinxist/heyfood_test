@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:heyfood_test/address_screen.dart';
+import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 class MainBottomSheet extends StatefulWidget {
   const MainBottomSheet({Key? key}) : super(key: key);
@@ -15,11 +16,17 @@ class _MainBottomSheetState extends State<MainBottomSheet>
   bool isAtTop = false;
   late TabController _tabController;
 
+  late ItemScrollController scrollController;
+  late ItemPositionsListener itemPositionsListener;
+
   @override
   void initState() {
     super.initState();
 
     _tabController = TabController(length: 5, vsync: this);
+
+    scrollController = ItemScrollController();
+    itemPositionsListener = ItemPositionsListener.create();
   }
 
   @override
@@ -35,7 +42,7 @@ class _MainBottomSheetState extends State<MainBottomSheet>
 
     return DraggableScrollableActuator(
       child: DraggableScrollableSheet(
-        maxChildSize: 0.959,
+        maxChildSize: 1,
         minChildSize: 0.6,
         expand: false,
         initialChildSize: 0.6,
@@ -185,9 +192,12 @@ class _MainBottomSheetState extends State<MainBottomSheet>
                             children: [
                               Column(
                                 children: [
-                                  ListView.builder(
-                                      itemCount: 15,
+                                  ScrollablePositionedList.builder(
+                                      itemCount: 100,
                                       shrinkWrap: true,
+                                      itemScrollController: scrollController,
+                                      itemPositionsListener:
+                                          itemPositionsListener,
                                       physics:
                                           const NeverScrollableScrollPhysics(),
                                       itemBuilder:
@@ -304,6 +314,46 @@ class _MainBottomSheetState extends State<MainBottomSheet>
                             TabBar(
                               controller: _tabController,
                               isScrollable: true,
+                              indicatorColor: Colors.black,
+                              onTap: (int index) {
+                                switch (index) {
+                                  case 0:
+                                    {
+                                      scrollController.jumpTo(
+                                        index: 0,
+                                      );
+                                      break;
+                                    }
+                                  case 1:
+                                    {
+                                      scrollController.jumpTo(
+                                        index: 4,
+                                      );
+                                      break;
+                                    }
+                                  case 2:
+                                    {
+                                      scrollController.jumpTo(
+                                        index: 8,
+                                      );
+                                      break;
+                                    }
+                                  case 3:
+                                    {
+                                      scrollController.jumpTo(
+                                        index: 16,
+                                      );
+                                      break;
+                                    }
+                                  case 4:
+                                    {
+                                      scrollController.jumpTo(
+                                        index: 20,
+                                      );
+                                      break;
+                                    }
+                                }
+                              },
                               tabs: [
                                 Tab(
                                   icon: Icon(

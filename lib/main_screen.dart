@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:heyfood_test/address_screen.dart';
 import 'package:heyfood_test/main_bottomsheet.dart';
 
 class MainScreen extends StatefulWidget {
@@ -15,6 +18,7 @@ class _MainScreenState extends State<MainScreen> {
 
     return SafeArea(
       child: Scaffold(
+        bottomSheet: const MainBottomSheet(),
         body: SizedBox(
           height: size.height,
           width: size.width,
@@ -131,7 +135,7 @@ class _MainScreenState extends State<MainScreen> {
                     )
                   ],
                 ),
-              )
+              ),
             ],
           ),
         ),
