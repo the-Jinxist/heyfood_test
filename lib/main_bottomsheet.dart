@@ -316,43 +316,7 @@ class _MainBottomSheetState extends State<MainBottomSheet>
                               isScrollable: true,
                               indicatorColor: Colors.black,
                               onTap: (int index) {
-                                switch (index) {
-                                  case 0:
-                                    {
-                                      scrollController.jumpTo(
-                                        index: 0,
-                                      );
-                                      break;
-                                    }
-                                  case 1:
-                                    {
-                                      scrollController.jumpTo(
-                                        index: 4,
-                                      );
-                                      break;
-                                    }
-                                  case 2:
-                                    {
-                                      scrollController.jumpTo(
-                                        index: 8,
-                                      );
-                                      break;
-                                    }
-                                  case 3:
-                                    {
-                                      scrollController.jumpTo(
-                                        index: 16,
-                                      );
-                                      break;
-                                    }
-                                  case 4:
-                                    {
-                                      scrollController.jumpTo(
-                                        index: 20,
-                                      );
-                                      break;
-                                    }
-                                }
+                                // _handleScroll(index);
                               },
                               tabs: [
                                 Tab(
@@ -407,5 +371,56 @@ class _MainBottomSheetState extends State<MainBottomSheet>
         },
       ),
     );
+  }
+
+  void _handleScroll(int index) {
+    switch (index) {
+      case 0:
+        {
+          setState(() {
+            scrollController.jumpTo(
+              index: 0,
+            );
+          });
+
+          break;
+        }
+      case 1:
+        {
+          setState(() {
+            scrollController.jumpTo(
+              index: 4,
+            );
+          });
+          break;
+        }
+      case 2:
+        {
+          setState(() {
+            scrollController.jumpTo(
+              index: 8,
+            );
+          });
+          break;
+        }
+      case 3:
+        {
+          setState(() {
+            scrollController.jumpTo(
+              index: 16,
+            );
+          });
+          break;
+        }
+      case 4:
+        {
+          setState(() {
+            scrollController.jumpTo(
+              index: 20,
+            );
+          });
+          break;
+        }
+    }
   }
 }
